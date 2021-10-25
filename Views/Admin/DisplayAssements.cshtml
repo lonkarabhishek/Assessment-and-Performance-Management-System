@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Mini_Tekstac_Question_Paper_Generation.Models.AssessmentModel>
+
+@{
+    ViewBag.Title = "DisplayAssements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assessments details</h2>
+
+<p>
+    @Html.ActionLink("Add new assessment", "AddAssessment","Admin")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Assessment Code
+        </th>
+        <th>
+           Assessment Name
+        </th>
+        <th>
+            Assessment Date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem=> item.AssessmentCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssessmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssessmentDate)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssessmentCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AssessmentCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AssessmentCode })
+        </td>*@
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>

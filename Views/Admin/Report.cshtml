@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report</h2>
+
+<h2>
+
+    Number of users given the assessment: @ViewBag.UserCount
+    <br/>
+    Number of users cleared the assessment: @ViewBag.PassCount
+    <br/>
+    Number of users failed the assessment: @ViewBag.FailCount
+    <br/>
+    Highest Score: @ViewBag.HighestScore
+</h2>
+
+@Html.ActionLink("Generate Report in pdf", "CreatePdfForDateRange","Admin");

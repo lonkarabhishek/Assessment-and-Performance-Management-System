@@ -1,0 +1,67 @@
+﻿@model Mini_Tekstac_Question_Paper_Generation.Models.ExamDetails
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<h3 style="color:green;font-size:14px;">@ViewBag.Message</h3>
+<h3 style="color:red;font-size:14px;">@ViewBag.Message1</h3>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteExam</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this Exam?</h3>
+    <div>
+        <h4>ExamDetails</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AssessmentModel.AssessmentName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AssessmentModel.AssessmentName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ExamName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ExamName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateOfExam)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOfExam)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Competency)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Competency)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to Exams", "DisplayExamDetails", "Admin")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿@model Mini_Tekstac_Question_Paper_Generation.Models.AdminModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <style>
+        .login-container {
+            margin: auto;
+            width: 50%;
+            border: hidden;
+            padding: 10px;
+            margin-top: 50px;
+            box-shadow: 1px 1px 20px 2px #cccccc;
+            border-radius: 5px;
+        }
+
+        .inner-container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .heading {
+            font-weight: 800;
+            color: #262626;
+            text-align: center;
+        }
+
+        .loginBtn {
+            margin-top: 10px;
+            font-weight: 600;
+            padding: 8px 22px;
+            border: 1px solid #11C06C;
+            border-radius: 30px;
+            background-color: transparent;
+            color: #0ea45c;
+            outline: none;
+        }
+    </style>
+</header>
+<script>
+    $('#loginBtn').button();
+
+    $('#loginBtn').click(function () {
+        $(this).html('<img src="http://www.bba-reman.com/images/fbloader.gif" />');
+    });
+</script>
+
+<div class="login-container">
+
+    <div class="inner-container">
+        <h2 class="heading">Login as Admin</h2>
+        <h3 style="color:red;">@ViewBag.Message</h3>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10">
+                        <input type="submit" value="Login" class="loginBtn" id="loginBtn" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>
+
+

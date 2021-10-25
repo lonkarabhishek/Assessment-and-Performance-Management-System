@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Mini_Tekstac_Question_Paper_Generation.Models.HelpTickets>
+
+@{
+    ViewBag.Title = "HelpTickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users raised help tickets</h2>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<a href="~/Content/bootstrap.css.map">~/Content/bootstrap.css.map</a>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<style>
+    .glow {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 2.5px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+</style>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                Ticket Id
+            </th>
+            <th scope="col">
+                User Id
+            </th>
+            <th scope="col">
+                User Name
+            </th>
+            <th scope="col">
+                Date of Ticket Raised
+            </th>
+            <th scope="col">
+                Ticket Status
+            </th>
+            <th scope="col">
+                Issue
+            </th>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col">
+                Resolution given by admin
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserModel.First_Name) @Html.DisplayFor(modelItem => item.UserModel.Last_Name)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_of_Ticket)
+            </td>
+
+            @if (item.TicketStatus == "Resolved")
+            {
+                <td class="bg-success">
+                    @Html.DisplayFor(modelItem => item.TicketStatus)
+                </td>
+            }
+            else if (item.TicketStatus.Equals("Active"))
+            {
+                <td class="bg-primary">
+                    @Html.DisplayFor(modelItem => item.TicketStatus)
+                </td>
+
+            }
+            else
+            {
+                <td class="glow">
+                    @Html.DisplayFor(modelItem => item.TicketStatus)
+                </td>
+            }
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Issue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resolve)
+            </td>
+            <td>
+                @Html.ActionLink("Resolve", "Resolve", new { id = item.TicketId })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>

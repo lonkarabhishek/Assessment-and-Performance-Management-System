@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Mini_Tekstac_Question_Paper_Generation.Models.FBQuestions>
+
+@{
+    ViewBag.Title = "DisplayFeedbackQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback Questions</h2>
+
+<p>
+    @Html.ActionLink("Add more", "FeedbackQuestionnare", "Admin")
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.QuestionNo }) 
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>

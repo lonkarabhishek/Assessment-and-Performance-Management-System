@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Mini_Tekstac_Question_Paper_Generation.Models.QuestionsAndAnswersSheet>
+@{
+    ViewBag.Title = "DisplayAssessmentQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assessment questions</h2>
+
+@using (Html.BeginForm())
+{
+
+    @*@Html.DisplayNameFor(model => model.AssessmentName)*@
+    @Html.TextBox("AssessmentName",null, new { placeholder = "search assessments"})
+    <input type="submit" id="submit" value="Search Assessments">
+
+}
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            Assessment Code
+        </th>
+        <th>
+            Assessment Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RightAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Competency)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RightAnswer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Competency)
+            </td>
+            
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>

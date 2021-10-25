@@ -1,0 +1,219 @@
+﻿@model Mini_Tekstac_Question_Paper_Generation.Models.AdminModel
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Chart.min.js"></script>
+
+<header>
+    <style>
+        .job-card {
+            max-width: 30rem;
+            padding: 20px 30px;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 1px 1px 10px 3px #d9d9d9;
+        }
+
+        .jobs-container {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .proceed-btn {
+            position: absolute;
+            bottom: 20px;
+            display: block;
+            padding: 5px 15px;
+            border: 1px solid #11c06c;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            width: max-content;
+            text-align: center;
+            color: #0c8d4f;
+        }
+
+            .proceed-btn:hover, .proceed-btn:active {
+                text-decoration: none;
+            }
+
+        .job-description {
+            padding-bottom: 20px;
+        }
+
+        .section-heading {
+            color: #0066ff;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #999999;
+            font-weight: 600;
+        }
+
+        .job-section {
+            margin-top: 20px;
+            margin-left: 25px;
+        }
+
+        .card-heading {
+            color: #595959;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #999999;
+            font-weight: 600;
+        }
+
+        .stat-card {
+            width: 500px;
+            height: 260px;
+        }
+    </style>
+</header>
+
+<p style="font-size:24px; margin-left:25px; display:inline; margin-right:20px">Admin Dashboard</p>
+
+<a href="/Admin/ConfirmLogout" style="width: 80px; padding: 5px 10px; text-align:center;border: 1px solid #595959; border-radius:30px; display:inline-block; text-decoration:none;">Logout</a>
+
+<section class="job-section">
+    <h4 class="section-heading">Users Statistics</h4>
+    <div class="jobs-container">
+        <div class="stat-card">
+            <p style="text-align:center">User Scores in assessments</p>
+            <canvas id="pie-chart"></canvas>
+        </div>
+        <div class="stat-card">
+            <p style="text-align:center">Skills in demand</p>
+            <canvas id="bar-chart"></canvas>
+        </div>
+    </div>
+</section>
+<section class="job-section">
+    <h4 class="section-heading">Exams and Assessments</h4>
+    <div class="jobs-container">
+        <div class="job-card">
+            <p class="card-heading">Create Exam</p>
+            <p class="job-description">Create an exam for the users here.</p>
+            <a href="/Admin/AddExamDetails" class="proceed-btn">Proceed</a>
+        </div>
+        <div class="job-card">
+            <p class="card-heading">Add Assessment</p>
+            <p class="job-description">Add an assessment for the users here.</p><br>
+            <a href="/Admin/AddAssessment" class="proceed-btn">Proceed</a>
+        </div>
+        <div class="job-card">
+            <p class="card-heading">Create Assessment Question</p>
+            <p class="job-description">Create questions for assessments here.</p><br>
+            <a href="/Admin/AddAssessmentQuestions" class="proceed-btn">Proceed</a>
+        </div>
+    </div>
+</section>
+<section class="job-section">
+    <h4 class="section-heading">Feedbacks and Help</h4>
+    <div class="jobs-container">
+        <div class="job-card">
+            <p class="card-heading">User Feedbacks</p>
+            <p class="job-description">See what all users have to say.</p><br>
+            <a href="/Admin/DisplayAllFeedback" class="proceed-btn">Proceed</a>
+        </div>
+        <div class="job-card">
+            <p class="card-heading">Add Feedback question</p>
+            <p class="job-description">Add a new feedback question here.</p><br>
+            <a href="/Admin/FeedbackQuestionnare" class="proceed-btn">Proceed</a>
+        </div>
+        <div class="job-card">
+            <p class="card-heading">Resolve Help Tickets</p>
+            <p class="job-description">Resolve help tickets raised by users here.</p><br>
+            <a href="/Admin/HelpTickets" class="proceed-btn">Proceed</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    var repArray = @Html.Raw(Json.Encode(ViewBag.REP));
+
+    var ctx = document.getElementById('pie-chart').getContext('2d');
+
+    var pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [
+                '> 80%',
+                '> 60% and < 80%',
+                '< 60%'
+            ],
+            datasets: [
+                {
+                    label: 'User Scores in assessments',
+                    data: repArray,
+                    backgroundColor: [
+                        'rgb(255, 153, 175)',
+                        'rgb(139, 202, 244)',
+                        'rgb(255, 217, 128)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 26, 75)',
+                        'rgb(21, 134, 209)',
+                        'rgb(255, 186, 26)'
+                    ],
+                    hoverOffset: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                display: true,
+                position: 'left'
+            }
+        }
+    });
+
+
+    var topSkillNames = @Html.Raw(Json.Encode(ViewBag.TOPSKILLNAMES));
+
+    var topSkillFreq = @Html.Raw(Json.Encode(ViewBag.TOPSKILLFREQ));
+
+    var ctx2 = document.getElementById('bar-chart').getContext('2d');
+
+    var barChart = new Chart(ctx2, {
+        type: 'horizontalBar',
+        data: {
+            labels: topSkillNames,
+            datasets: [{
+                data: topSkillFreq,
+                backgroundColor: [
+                    'rgb(255, 153, 175)',
+                    'rgb(139, 202, 244)',
+                    'rgb(255, 217, 128)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        min: 0 // Edit the value according to what you need
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'No. of users'
+                    }
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+
+            legend: {
+                display: false
+            }
+        }
+    });
+</script>
+
+

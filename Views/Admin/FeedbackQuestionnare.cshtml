@@ -1,0 +1,42 @@
+﻿@model Mini_Tekstac_Question_Paper_Generation.Models.FBQuestions
+
+@{
+    ViewBag.Title = "FeedbackQuestionnare";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback Questions</h2>
+<h3 style="color:green;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@ViewBag.Message</h3>
+<h3 style="color:red;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@ViewBag.Message1</h3>
+
+@Html.ActionLink("Display feeback questions added", "DisplayFeedbackQuestions","Admin")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add feedback questions</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add question" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>

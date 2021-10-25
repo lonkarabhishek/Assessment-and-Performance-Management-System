@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mini_Tekstac_Question_Paper_Generation", "Mini_Tekstac_Question_Paper_Generation.csproj", "{C06619DB-E080-4E33-855C-C25C14330BCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C06619DB-E080-4E33-855C-C25C14330BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C06619DB-E080-4E33-855C-C25C14330BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C06619DB-E080-4E33-855C-C25C14330BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C06619DB-E080-4E33-855C-C25C14330BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B024CDE-46E3-488C-A1AF-4F96A9B9868D}
+	EndGlobalSection
+EndGlobal

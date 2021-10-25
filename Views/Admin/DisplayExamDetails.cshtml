@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Mini_Tekstac_Question_Paper_Generation.Models.ExamDetails>
+
+@{
+    ViewBag.Title = "DisplayExamDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Exams</h2>
+
+<p>
+    @Html.ActionLink("Add new exam", "AddExamDetails", "Admin")
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            Exam Id
+        </th>
+        <th>
+            Assessment Code
+        </th>
+        <th>
+            Assessment Name
+        </th>
+        
+        <th>
+            Exam Name
+        </th>
+        <th>
+            Date of Exam
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Competency)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentCode)
+            </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.AssessmentModel.AssessmentName)
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfExam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Competency)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Edit", new { id = item.ExamId, assescode = item.AssessmentCode }) |
+                @Html.ActionLink("Delete", "RemoveExam", new { examid = item.ExamId })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>

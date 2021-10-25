@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Mini_Tekstac_Question_Paper_Generation.Models.FeedbackModel>
+
+@{
+    ViewBag.Title = "DisplayAllFeedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedbacks given by users</h2>
+
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            Feedback Id
+        </th>
+        <th>
+            User name
+        </th>
+        <th>
+            Assessment name
+        </th>
+
+        <th>
+            Question
+        </th>
+
+        <th>
+            Feedback
+        </th>
+        <th>
+            Feedback Given Date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FeedbackId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserModel.First_Name)  @Html.DisplayFor(modelItem => item.UserModel.Last_Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AssessmentModel.AssessmentName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FBQuestions.Question)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Feedback)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.feedbackGivenDate)
+    </td>
+
+
+</tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back to Admin's Home", "Home", "Admin")
+</div>
