@@ -1,5 +1,5 @@
-# Mini_Tekstac
-Mini_Tekstac is an assessments making and giving web application.
+#Assessment-and-Performance-Management-System
+Assessment-and-Performance-Management-System is an assessments making and taking web application.
 
 **APPLICATION IS BUILT ON DOT NET FRAMEWORK, MVC 5**
 1. Main files Models, Views and Controllers are uploaded as part of this repo, as rest are basically used once for eg, the migrations.
